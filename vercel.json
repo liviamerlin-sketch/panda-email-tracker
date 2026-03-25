@@ -1,5 +1,7 @@
 {
+  "outputDirectory": "public",
   "rewrites": [
-    { "source": "/track", "destination": "/api/track" }
+    { "source": "/track", "destination": "/api/track" },
+    { "source": "/api/log", "destination": "/api/log" }
   ]
 }
