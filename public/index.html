@@ -109,20 +109,17 @@
 
   <!-- CADÊNCIA -->
   <div id="page-cadencia">
-    <div class="info-box">💡 Cadência B2B SaaS — 18 dias, 7 touchpoints multicanal. Aplique por segmento de lead.</div>
+    <div class="info-box">💡 Cadência North America — 14 dias, 4 touchpoints só por email. Foco em resposta, não em volume.</div>
     <div class="timeline" id="timeline"></div>
   </div>
 </div>
 
 <script>
 const CADENCIA = [
-  { dia:1,  canal:"Email",    color:"#6366f1", icon:"📧", acao:"Email de introdução com pixel de tracking" },
-  { dia:3,  canal:"LinkedIn", color:"#0a66c2", icon:"💼", acao:"Conexão no LinkedIn com mensagem personalizada" },
-  { dia:5,  canal:"Email",    color:"#6366f1", icon:"📧", acao:"Follow-up para quem não abriu (assunto diferente)" },
-  { dia:7,  canal:"WhatsApp", color:"#25d366", icon:"💬", acao:"Mensagem curta para quem abriu mas não respondeu" },
-  { dia:10, canal:"Email",    color:"#6366f1", icon:"📧", acao:"Case study relevante para o segmento" },
-  { dia:14, canal:"LinkedIn", color:"#0a66c2", icon:"💼", acao:"Comentar post do lead + mensagem direta" },
-  { dia:18, canal:"Email",    color:"#6366f1", icon:"📧", acao:"Último contato — proposta de call rápida" },
+  { dia:1,  canal:"Email", color:"#6366f1", icon:"📧", acao:"Email de introdução personalizado com scraping do site + pixel de tracking" },
+  { dia:3,  canal:"Email", color:"#6366f1", icon:"📧", acao:"Follow-up para quem não abriu — assunto diferente, mais curto e direto" },
+  { dia:7,  canal:"Email", color:"#6366f1", icon:"📧", acao:"Follow-up para quem abriu mas não respondeu — referência ao email anterior" },
+  { dia:14, canal:"Email", color:"#6366f1", icon:"📧", acao:"Último contato — pergunta direta e simples para encerrar o ciclo" },
 ];
 
 function setTab(t) {
@@ -169,7 +166,6 @@ async function loadData() {
       taxa>=15 ? "🟡 Abaixo da média — revise os assuntos" :
                  "🔴 Taxa baixa — ative cadência de follow-up";
 
-    // Remetentes
     const remMap = {};
     rows.forEach(r=>{
       const rem = r.remetente || r.sender || "—";
@@ -187,7 +183,6 @@ async function loadData() {
       </div>`;
     }).join("");
 
-    // Leads table
     const tbody = document.getElementById("leads-tbody");
     tbody.innerHTML = rows.map(r=>{
       const st = r.status?.toLowerCase();
@@ -205,7 +200,6 @@ async function loadData() {
   }
 }
 
-// Build cadência
 const tl = document.getElementById("timeline");
 tl.innerHTML = CADENCIA.map((c,i)=>`
   <div class="tl-item">
@@ -223,7 +217,7 @@ tl.innerHTML = CADENCIA.map((c,i)=>`
   </div>`).join("");
 
 loadData();
-setInterval(loadData, 30000); // refresh a cada 30s
+setInterval(loadData, 30000);
 </script>
 </body>
 </html>
